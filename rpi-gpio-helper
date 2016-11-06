@@ -1,0 +1,57 @@
+#!/usr/bin/env python
+#
+# Helper app for Scratch2 Raspberry PI GPIO extension
+#
+# Author: CoderDojo Baarn
+# Copyright: Copyright 2016, CoderDojo Baarn
+# License: MIT
+#
+from flask import Flask
+import RPi.GPIO as GPIO
+
+app = Flask(__name__)
+GPIO.setmode(GPIO.BCM)
+
+@app.route('/')
+def hello_world():
+    return 'Helper app for Scratch2 Raspberry PI GPIO extension'
+
+@app.route('/reset_all')
+def reset_all():
+    for channel in range(1, 27):
+        GPIO.setup(channel, GPIO.OUT)
+        GPIO.output(channel, GPIO.LOW)
+    return 'gpio/* mode set to output with value LOW'
+
+@app.route('/poll')
+def poll():
+    gpio = ''
+    for channel in range(1, 27):
+        if GPIO.gpio_function(channel) == GPIO.IN:
+            if GPIO.input(channel):
+                gpio += 'gpio/%s HIGH'.format(channel)
+            else:
+                gpio += 'gpio/%s LOW'.format(channel)
+        else:
+            gpio += 'gpio/%s OUTPUT'.format(channel)
+    return gpio
+
+@app.route('/gpio/<int:channel>/<output>')
+def output(channel, output):
+    if output == 'HIGH':
+        GPIO.output(channel, GPIO.HIGH)
+    else:
+        GPIO.output(channel, GPIO.LOW)
+    return 'gpio/%s output set to %s'.format(channel, output)
+
+@app.route('/mode/<int:channel>/<mode>')
+def mode(channel, mode):
+    if mode == 'INPUT':
+        GPIO.setup(channel, GPIO.IN)
+    else:
+        GPIO.setup(channel, GPIO.OUT)
+    return 'gpio/%s mode set to %s'.format(channel, mode)
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')

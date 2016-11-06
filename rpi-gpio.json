@@ -1,0 +1,16 @@
+{
+  "extensionName": "Raspberry PI GPIO",
+  "extensionPort": 5000,
+  "blockSpecs": [
+    [ " ", "gpio output %m.gpio to %m.output", "gpio", "1", "HIGH"],
+    [ " ", "gpio mode %m.gpio to %m.mode", "mode", "1", "INPUT"],
+    [ "r", "gpio input %m.gpio", "gpio"]
+  ],
+  "menus": {
+    "gpio": [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", 
+                 "11", "12", "13", "14", "15", "16", "17", "18", "19",
+                 "20", "21", "22", "23", "24", "25", "26" ],
+    "output": [ "HIGH", "LOW" ],
+    "mode": [ "INPUT", "OUTPUT" ]
+  }
+}
