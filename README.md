@@ -6,6 +6,8 @@ Je kunt deze plugin installeren door in de offline Scratch editor de `shift` toe
 
 Naast de plugin heb je op zijn minst het helper programma nodig die met de plugin praat. Mocht je de offline Scratch editor niet hebben draaien op een PI dan kun je ipv het helper programma het proxy programma draaien.
 
+Voor de helper programma's heb je python en python-flask nodig.
+
 ## Voorbeeld setup
 Raspberry PI met ip 192.168.0.10 draait het programma rpio-gpio-helper:
 ```
