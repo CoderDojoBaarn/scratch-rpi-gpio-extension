@@ -29,11 +29,11 @@ def poll():
     for channel in range(1, 28):
         if GPIO.gpio_function(channel) == GPIO.IN:
             if GPIO.input(channel):
-                gpio += 'gpio/%s HIGH'.format(channel)
+                gpio += 'gpio/{} HIGH'.format(channel)
             else:
-                gpio += 'gpio/%s LOW'.format(channel)
+                gpio += 'gpio/{} LOW'.format(channel)
         else:
-            gpio += 'gpio/%s OUTPUT'.format(channel)
+            gpio += 'gpio/{} OUTPUT'.format(channel)
     return gpio
 
 @app.route('/gpio/<int:channel>/<output>')
@@ -42,7 +42,7 @@ def output(channel, output):
         GPIO.output(channel, GPIO.HIGH)
     else:
         GPIO.output(channel, GPIO.LOW)
-    return 'gpio/%s output set to %s'.format(channel, output)
+    return 'gpio/{} output set to {}'.format(channel, output)
 
 @app.route('/mode/<int:channel>/<mode>')
 def mode(channel, mode):
@@ -50,7 +50,7 @@ def mode(channel, mode):
         GPIO.setup(channel, GPIO.IN)
     else:
         GPIO.setup(channel, GPIO.OUT)
-    return 'gpio/%s mode set to %s'.format(channel, mode)
+    return 'gpio/{} mode set to {}'.format(channel, mode)
 
 
 if __name__ == '__main__':
