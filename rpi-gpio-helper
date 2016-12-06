@@ -18,7 +18,7 @@ def hello_world():
 
 @app.route('/reset_all')
 def reset_all():
-    for channel in range(1, 27):
+    for channel in range(1, 28):
         GPIO.setup(channel, GPIO.OUT)
         GPIO.output(channel, GPIO.LOW)
     return 'gpio/* mode set to output with value LOW'
@@ -26,7 +26,7 @@ def reset_all():
 @app.route('/poll')
 def poll():
     gpio = ''
-    for channel in range(1, 27):
+    for channel in range(1, 28):
         if GPIO.gpio_function(channel) == GPIO.IN:
             if GPIO.input(channel):
                 gpio += 'gpio/%s HIGH'.format(channel)
