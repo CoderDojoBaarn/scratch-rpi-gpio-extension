@@ -29,11 +29,11 @@ def poll():
     for channel in range(1, 28):
         if GPIO.gpio_function(channel) == GPIO.IN:
             if GPIO.input(channel):
-                gpio += 'gpio/{} HIGH'.format(channel)
+                gpio += 'gpio/{} HIGH\n'.format(channel)
             else:
-                gpio += 'gpio/{} LOW'.format(channel)
+                gpio += 'gpio/{} LOW\n'.format(channel)
         else:
-            gpio += 'gpio/{} OUTPUT'.format(channel)
+            gpio += 'gpio/{} OUTPUT\n'.format(channel)
     return gpio
 
 @app.route('/gpio/<int:channel>/<output>')
