@@ -1,6 +1,7 @@
 {
   "extensionName": "Raspberry PI GPIO",
   "extensionPort": 5000,
+  "host": "127.0.0.1",
   "blockSpecs": [
     [ " ", "gpio output %m.gpio to %m.output", "gpio", "1", "HIGH"],
     [ " ", "gpio mode %m.gpio to %m.mode", "mode", "1", "INPUT"],
